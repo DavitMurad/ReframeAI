@@ -8,11 +8,24 @@
 import SwiftUI
 
 struct OnBoardingView: View {
+    @StateObject var llmChatVM = LLMChatViewModel()
+    @State var textFieldText = ""
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            TextField("Placeholder", text: $textFieldText)
+            
+            Button("asd") {
+                Task {
+                    await llmChatVM.fetchResponse(userMessage: textFieldText)
+                    print(llmChatVM.llmResponse)
+                }
+
+            }
+        }
     }
 }
 
-#Preview {
-    OnBoardingView()
-}
+//#Preview {
+//    OnBoardingView()
+//}
