@@ -11,7 +11,8 @@ import SwiftUI
 struct ReframeAIApp: App {
     var body: some Scene {
         WindowGroup {
-            OnBoardingView()
+            LLMChatView()
+                .preferredColorScheme(.light)
         }
     }
 }
