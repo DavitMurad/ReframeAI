@@ -7,13 +7,25 @@
 
 import SwiftUI
 
+enum OnBoardingViews: CaseIterable {
+    case welcome
+    case beforeAfter
+    case options //casual, professional, etc.
+    case final
+}
+
 struct OnBoardingView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+    }
+    
+    @ViewBuilder
+    func onboardingPages() -> any View {
+        
     }
 }
 
 
-//#Preview {
-//    OnBoardingView()
-//}
+#Preview {
+    OnBoardingView()
+}
