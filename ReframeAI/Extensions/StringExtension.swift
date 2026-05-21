@@ -22,6 +22,7 @@ extension String {
         - Keep the tone professional, natural, and believable.
         - Avoid clichés, exaggeration, buzzwords, and generic filler.
         - Prefer clear, specific, action-oriented language.
+        - Do not use ###, feel free to use ** to make texts bold, limit —
 
         DECISION LOGIC:
         - If the user gives enough context, generate the answer immediately.
@@ -31,7 +32,7 @@ extension String {
         OUTPUT FORMAT:
         Always provide exactly 3 variations:
 
-        1. Casual Professional
+        1. Friendly Professional
         Friendly, natural, and approachable.
 
         2. Formal Professional

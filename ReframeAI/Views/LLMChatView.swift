@@ -11,18 +11,25 @@ import DotLottie
 
 struct LLMChatView: View {
     @StateObject var llmChatVM = LLMChatViewModel()
+    @Binding var path: [NavRoute]
     @State var textFieldText = ""
     @FocusState var isTextFieldFocused: Bool
     @State var isSendDisabled = false
     @State var isLoading = false
 
-    
     var body: some View {
         ScrollView {
             ScrollViewReader { proxy in
                 VStack {
+                    if llmChatVM.llmChatHistory.isEmpty {
+                        MessageView(message: "Temproray Chat, nothing will be recorded", color: .white, alignment: .center)
+                            .font(.subheadline)
+                            .padding()
+                         
+                    }
                     messageBoxes()
                         .padding(.horizontal)
+                        .padding(.bottom, 15)
                 }
                 .id(0)
                 .onChange(of: llmChatVM.llmChatHistory.count) { _, _ in
@@ -67,13 +74,14 @@ struct LLMChatView: View {
                         .resizable()
                         .font(.headline)
                         .foregroundStyle(isSendDisabled || textFieldText.isEmpty ? .gray : .customBlue)
-                        .frame(width: 40, height: 40)
+                        .frame(width: 35, height: 35)
                         .padding(.trailing)
                 }
                 .disabled(isSendDisabled || textFieldText.isEmpty)
             }
         }
         .frame(alignment: .bottom)
+        .navigationBarBackButtonHidden()
     }
 }
 

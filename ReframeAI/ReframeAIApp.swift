@@ -6,12 +6,16 @@
 //
 
 import SwiftUI
+enum NavRoute {
+    case onboardingview
+    case chatview
+}
 
 @main
 struct ReframeAIApp: App {
     var body: some Scene {
         WindowGroup {
-            LLMChatView()
+            OnBoardingView()
                 .preferredColorScheme(.light)
         }
     }

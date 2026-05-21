@@ -16,7 +16,7 @@ extension LLMChatView {
                 }
             } else {
                 if let llmMessage = message["content"] {
-                    MessageView(message: llmMessage, color: .orange, alignment: .leading)
+                    MessageView(message: llmMessage, color: .white, alignment: .leading)
                     
                 }
             }
