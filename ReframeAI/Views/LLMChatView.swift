@@ -6,8 +6,6 @@
 //
 
 import SwiftUI
-import DotLottie
-
 
 struct LLMChatView: View {
     @StateObject var llmChatVM = LLMChatViewModel()
@@ -16,74 +14,18 @@ struct LLMChatView: View {
     @FocusState var isTextFieldFocused: Bool
     @State var isSendDisabled = false
     @State var isLoading = false
+    @State var errorMessage = ""
 
     var body: some View {
-        ScrollView {
-            ScrollViewReader { proxy in
-                VStack {
-                    if llmChatVM.llmChatHistory.isEmpty {
-                        MessageView(message: "Temproray Chat, nothing will be recorded", color: .white, alignment: .center)
-                            .font(.subheadline)
-                            .padding()
-                         
-                    }
-                    messageBoxes()
-                        .padding(.horizontal)
-                        .padding(.bottom, 15)
-                }
-                .id(0)
-                .onChange(of: llmChatVM.llmChatHistory.count) { _, _ in
-                    withAnimation(.easeInOut) {
-                        proxy.scrollTo(0, anchor: .bottom)
-                    }
-                }
-            }
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-        .contentShape(Rectangle())
-        .onTapGesture {
-            isTextFieldFocused = false
-        }
+        setupChatView()
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         
-        VStack(alignment: .leading, spacing: 0) {
-            if isLoading {
-                DotLottieAnimation(fileName: "LoadingDotsBlue", config: AnimationConfig(autoplay: true, loop: true)).view()
-                    .frame(width: 200, height: 100, alignment: .leading)
-                    .padding(.bottom, -40)
-                    .padding(.leading, -45)
-            }
-            HStack {
-                LLMTextFieldView(placeholder: "Ask me!", textFieldText: $textFieldText, isFieldFocused: $isTextFieldFocused)
-                    .padding(.leading)
-                
-                Button {
-                    isLoading.toggle()
-                    isSendDisabled.toggle()
-                    isTextFieldFocused = false
-                    Task {
-                        let captureText = textFieldText
-                        textFieldText = ""
-                            try await llmChatVM.fetchResponse(userMessage: captureText)
-                            
-                            isSendDisabled.toggle()
-                            isLoading.toggle()
-                    }
-                    
-                } label: {
-                    Image(systemName: "arrow.up.message.fill")
-                        .resizable()
-                        .font(.headline)
-                        .foregroundStyle(isSendDisabled || textFieldText.isEmpty ? .gray : .customBlue)
-                        .frame(width: 35, height: 35)
-                        .padding(.trailing)
-                }
-                .disabled(isSendDisabled || textFieldText.isEmpty)
-            }
-        }
+        setupTextFieldView()
         .frame(alignment: .bottom)
         .navigationBarBackButtonHidden()
     }
 }
+
 
 //#Preview {
 //    LLMChatView()

@@ -22,7 +22,7 @@ class LLMChatViewModel: ObservableObject {
                 llmLastResponse = choice.message.content
             }
         } catch {
-            throw error
-        }   
+            llmChatHistory.append(["role" : "error", "content" : "An error occured, please try later."])
+        }
     }
 }
