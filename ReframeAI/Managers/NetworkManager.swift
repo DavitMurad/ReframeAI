@@ -9,7 +9,7 @@ import Foundation
 
 class NetworkManager {
     func setupRequest(userMessage: String, message: [ [String: String] ]) async throws -> LLMChoice? {
-        guard let url = URL(string: "https://openrouter.ai/api/v1/chat/completio") else {
+        guard let url = URL(string: "https://openrouter.ai/api/v1/chat/completions") else {
             throw URLError(.badURL)
         }
         
