@@ -1,11 +1,13 @@
 # ReframeAI
 
 ## About 🤌
-https://github.com/user-attachments/assets/686a3e8e-5798-40da-b300-1a9d10fd2fd3
+
 
 ReframeAI is an iOS app that rewrites your messages into LinkedIn and CV-friendly language. You type your raw thought, the AI returns a polished version. Simple as that. 
 
 **'I was fired'** → **'I am now exploring new opportunities aligned with my long-term goals.'"**
+
+https://github.com/user-attachments/assets/686a3e8e-5798-40da-b300-1a9d10fd2fd3
 
 ## Technologies Used
 - **SwiftUI** - entire UI built natively with modern declarative syntax
